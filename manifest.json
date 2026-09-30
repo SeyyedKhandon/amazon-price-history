@@ -1,0 +1,153 @@
+{
+  "manifest_version": 3,
+  "name": "Price History for Amazon",
+  "version": "1.0.3",
+  "description": "Click on an Amazon product page, or right-click it, to jump straight to its price history on CamelCamelCamel and Keepa.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Price History for Amazon",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "activeTab",
+    "contextMenus",
+    "tabs",
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.amazon.com/dp/*",
+        "*://*.amazon.com/*/dp/*",
+        "*://*.amazon.com/gp/product/*",
+        "*://*.amazon.com/*/gp/product/*",
+        "*://*.amazon.com/gp/aw/d/*",
+        "*://*.amazon.com/*/gp/aw/d/*",
+        "*://*.amazon.com/product-reviews/*",
+        "*://*.amazon.com/*/product-reviews/*",
+        "*://*.amazon.co.uk/dp/*",
+        "*://*.amazon.co.uk/*/dp/*",
+        "*://*.amazon.co.uk/gp/product/*",
+        "*://*.amazon.co.uk/*/gp/product/*",
+        "*://*.amazon.co.uk/gp/aw/d/*",
+        "*://*.amazon.co.uk/*/gp/aw/d/*",
+        "*://*.amazon.co.uk/product-reviews/*",
+        "*://*.amazon.co.uk/*/product-reviews/*",
+        "*://*.amazon.de/dp/*",
+        "*://*.amazon.de/*/dp/*",
+        "*://*.amazon.de/gp/product/*",
+        "*://*.amazon.de/*/gp/product/*",
+        "*://*.amazon.de/gp/aw/d/*",
+        "*://*.amazon.de/*/gp/aw/d/*",
+        "*://*.amazon.de/product-reviews/*",
+        "*://*.amazon.de/*/product-reviews/*",
+        "*://*.amazon.fr/dp/*",
+        "*://*.amazon.fr/*/dp/*",
+        "*://*.amazon.fr/gp/product/*",
+        "*://*.amazon.fr/*/gp/product/*",
+        "*://*.amazon.fr/gp/aw/d/*",
+        "*://*.amazon.fr/*/gp/aw/d/*",
+        "*://*.amazon.fr/product-reviews/*",
+        "*://*.amazon.fr/*/product-reviews/*",
+        "*://*.amazon.co.jp/dp/*",
+        "*://*.amazon.co.jp/*/dp/*",
+        "*://*.amazon.co.jp/gp/product/*",
+        "*://*.amazon.co.jp/*/gp/product/*",
+        "*://*.amazon.co.jp/gp/aw/d/*",
+        "*://*.amazon.co.jp/*/gp/aw/d/*",
+        "*://*.amazon.co.jp/product-reviews/*",
+        "*://*.amazon.co.jp/*/product-reviews/*",
+        "*://*.amazon.ca/dp/*",
+        "*://*.amazon.ca/*/dp/*",
+        "*://*.amazon.ca/gp/product/*",
+        "*://*.amazon.ca/*/gp/product/*",
+        "*://*.amazon.ca/gp/aw/d/*",
+        "*://*.amazon.ca/*/gp/aw/d/*",
+        "*://*.amazon.ca/product-reviews/*",
+        "*://*.amazon.ca/*/product-reviews/*",
+        "*://*.amazon.it/dp/*",
+        "*://*.amazon.it/*/dp/*",
+        "*://*.amazon.it/gp/product/*",
+        "*://*.amazon.it/*/gp/product/*",
+        "*://*.amazon.it/gp/aw/d/*",
+        "*://*.amazon.it/*/gp/aw/d/*",
+        "*://*.amazon.it/product-reviews/*",
+        "*://*.amazon.it/*/product-reviews/*",
+        "*://*.amazon.es/dp/*",
+        "*://*.amazon.es/*/dp/*",
+        "*://*.amazon.es/gp/product/*",
+        "*://*.amazon.es/*/gp/product/*",
+        "*://*.amazon.es/gp/aw/d/*",
+        "*://*.amazon.es/*/gp/aw/d/*",
+        "*://*.amazon.es/product-reviews/*",
+        "*://*.amazon.es/*/product-reviews/*",
+        "*://*.amazon.in/dp/*",
+        "*://*.amazon.in/*/dp/*",
+        "*://*.amazon.in/gp/product/*",
+        "*://*.amazon.in/*/gp/product/*",
+        "*://*.amazon.in/gp/aw/d/*",
+        "*://*.amazon.in/*/gp/aw/d/*",
+        "*://*.amazon.in/product-reviews/*",
+        "*://*.amazon.in/*/product-reviews/*",
+        "*://*.amazon.com.mx/dp/*",
+        "*://*.amazon.com.mx/*/dp/*",
+        "*://*.amazon.com.mx/gp/product/*",
+        "*://*.amazon.com.mx/*/gp/product/*",
+        "*://*.amazon.com.mx/gp/aw/d/*",
+        "*://*.amazon.com.mx/*/gp/aw/d/*",
+        "*://*.amazon.com.mx/product-reviews/*",
+        "*://*.amazon.com.mx/*/product-reviews/*",
+        "*://*.amazon.com.au/dp/*",
+        "*://*.amazon.com.au/*/dp/*",
+        "*://*.amazon.com.au/gp/product/*",
+        "*://*.amazon.com.au/*/gp/product/*",
+        "*://*.amazon.com.au/gp/aw/d/*",
+        "*://*.amazon.com.au/*/gp/aw/d/*",
+        "*://*.amazon.com.au/product-reviews/*",
+        "*://*.amazon.com.au/*/product-reviews/*"
+      ],
+      "js": [
+        "sites.js",
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/camel-favicon.png",
+        "icons/keepa-favicon.png"
+      ],
+      "matches": [
+        "*://*.amazon.com/*",
+        "*://*.amazon.co.uk/*",
+        "*://*.amazon.de/*",
+        "*://*.amazon.fr/*",
+        "*://*.amazon.co.jp/*",
+        "*://*.amazon.ca/*",
+        "*://*.amazon.it/*",
+        "*://*.amazon.es/*",
+        "*://*.amazon.in/*",
+        "*://*.amazon.com.mx/*",
+        "*://*.amazon.com.au/*"
+      ]
+    }
+  ]
+}
