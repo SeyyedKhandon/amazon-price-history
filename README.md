@@ -7,6 +7,10 @@ page and it opens that exact product's price-history page on
 
 [Watch the 36-second demo](https://www.youtube.com/watch?v=_BUUSi_Evqk)
 
+# Install
+
+[Check it on chrome webstore to install for free](https://chromewebstore.google.com/detail/price-history-for-amazon/fdebpchoageihbdifaiallkcipeooaoo)
+
 ## Screenshots
 
 <p align="center">
