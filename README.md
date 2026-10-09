@@ -99,20 +99,38 @@ itself (to fetch the extra result pages you ask for). Saved locally via the
 settings. No analytics, no telemetry, no server. Full policy:
 [PRIVACY.md](PRIVACY.md).
 
-## Project structure
+## Development
 
-| File                         | Purpose                                                         |
-| ---------------------------- | --------------------------------------------------------------- |
-| `manifest.json`              | Extension manifest (Manifest V3)                                |
-| `sites.js`                   | Amazon → CamelCamelCamel/Keepa URL mapping and ASIN parsing     |
-| `popup.html` / `popup.js`    | Toolbar popup                                                   |
-| `background.js`              | Right-click context menu and toolbar icon state                 |
-| `content.js` / `content.css` | Injects the buttons next to the price on product pages          |
-| `search.js` / `search.css`   | Multi-page search toolbar: fetching, filtering, sorting         |
-| `lib.js`                     | Pure price/rating/review parsing and sort helpers (unit-tested) |
-| `test/`                      | Node tests for `lib.js` — run with `node --test`                |
-| `icons/`                     | Toolbar/store icons and bundled attribution favicons            |
-| `promo/assets/`              | Screenshots used in this README and store listings              |
+Written in TypeScript (strict), bundled with [esbuild](https://esbuild.github.io/) into `dist/`, which is the
+extension Chrome loads. The shipped extension has no runtime dependencies.
+
+```sh
+npm install
+npm run build      # bundle into dist/
+npm run watch      # rebuild on change
+npm run check      # type-check + build + all tests
+npm run package    # type-check, build, and zip dist/ into release/ for the Web Store
+```
+
+To try a local build, open `chrome://extensions`, enable Developer mode and load the `dist/` folder.
+Needs Node 22.18 or newer (tests run TypeScript directly).
+
+### Project structure
+
+| Path | Purpose |
+| --- | --- |
+| `src/search.ts` | Search-results script: reads the cards, loads more pages (politely), and drives the toolbar |
+| `src/toolbar.ts` | The panel itself: a view that draws whatever state it's given, plus its stylesheet |
+| `src/lib.ts` | Pure logic with no browser APIs: price/rating/review parsing, sorting, filtering, settings validation |
+| `src/sites.ts` | Amazon → CamelCamelCamel / Keepa URL mapping and ASIN parsing |
+| `src/content.ts` | Product pages: the CamelCamelCamel / Keepa buttons next to the price |
+| `src/background.ts` | Right-click menu and toolbar icon state |
+| `src/popup.ts` | Toolbar popup |
+| `src/flags.ts` | The two on/off switches, shared by the popup and the content scripts |
+| `manifest.json`, `popup.html`, `*.css`, `icons/` | Static files, copied as they are into `dist/` |
+| `test/` | Unit tests for `lib.ts` and `sites.ts`, and an end-to-end test that runs the built bundle against a fake Amazon page |
+| `scripts/` | Build and packaging scripts |
+| `promo/assets/` | Screenshots used in this README and store listings |
 
 ## Changelog
 

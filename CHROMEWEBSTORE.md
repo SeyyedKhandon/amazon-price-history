@@ -2,11 +2,9 @@
 
 Reference doc for filling out the Developer Dashboard. Not shipped in the extension package.
 
-## Single purpose
+## Single purpose (paste into the dashboard)
 
-Shopping tools for Amazon: (1) on a search page, load several pages of results at once and
-filter/sort them; (2) on a product page, jump straight to that product's price history on
-CamelCamelCamel and Keepa — via inline buttons, the toolbar icon or a right-click menu.
+> Help shoppers find and evaluate products on Amazon before they buy. On search-result pages, it lets users view several pages of results together and filter and sort them by rating, review count and price. On product pages, it links straight to that product's price history on CamelCamelCamel and Keepa. Both features run only on Amazon shopping pages and exist for one goal: helping the user decide what to buy.
 
 ## Store listing copy
 
@@ -65,6 +63,7 @@ CamelCamelCamel and Keepa — via inline buttons, the toolbar icon or a right-cl
 
 ## Assets
 
+- Package to upload: run `npm run package`, then upload `release/toolbox-for-amazon-<version>.zip` (the built `dist/` folder)
 - Icons: `icons/icon16.png`, `icons/icon32.png`, `icons/icon48.png`, `icons/icon128.png`
 - Screenshots (1280×800, 24-bit PNG, no alpha) in `store-assets/`. The store allows 5; upload in this order.
   Captions/alt text are for the listing and accessibility notes:
