@@ -42,3 +42,18 @@ function camelPageUrl(site, asin) {
 function keepaPageUrl(site, asin) {
   return `https://keepa.com/#!product/${site.keepa}-${asin}`;
 }
+
+// Search results, supported by the multi-page toolbar (more marketplaces than price history covers).
+const SEARCH_HOST_RE = /^(?:www\.)?amazon\.(?:com|co\.uk|de|fr|co\.jp|ca|it|es|in|com\.mx|com\.au|nl|se|pl|com\.tr|ae|sa|sg|com\.br|com\.be|eg|ie)$/;
+
+function isSearchUrl(url) {
+  let parsed;
+  try {
+    parsed = new URL(url);
+  } catch {
+    return false;
+  }
+  if (!SEARCH_HOST_RE.test(parsed.hostname)) return false;
+  const p = parsed.pathname;
+  return p === "/s" || p.startsWith("/s/") || p.startsWith("/gp/search");
+}

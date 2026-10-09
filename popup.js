@@ -14,6 +14,16 @@ enableEmbeddedBtnsEl.addEventListener("change", (e) => {
   chrome.storage.sync.set({ showEmbeddedButtons: e.target.checked });
 });
 
+const enableSearchEl = document.getElementById("enable-search-toolbar");
+
+chrome.storage.sync.get({ showSearchToolbar: true }, (items) => {
+  enableSearchEl.checked = items.showSearchToolbar;
+});
+
+enableSearchEl.addEventListener("change", (e) => {
+  chrome.storage.sync.set({ showSearchToolbar: e.target.checked });
+});
+
 contactEl.addEventListener("click", async () => {
   try {
     await navigator.clipboard.writeText(contactEl.dataset.email);
@@ -56,7 +66,11 @@ async function main() {
 
   const parsed = parseAmazonUrl(tab.url);
   if (!parsed) {
-    showStatus("Open an Amazon product page, then click the extension icon.");
+    showStatus(
+      isSearchUrl(tab.url)
+        ? "Use the Toolbox for Amazon panel at the top of the left column to load more pages, filter and sort."
+        : "Open an Amazon product page for price history, or a search page for the multi-page toolbar.",
+    );
     return;
   }
 
@@ -66,11 +80,19 @@ async function main() {
   const camelPage = camelPageUrl(site, asin);
   if (camelPage) {
     actionsEl.appendChild(
-      linkButton("Open on CamelCamelCamel", camelPage, "icons/camel-favicon.png")
+      linkButton(
+        "Open on CamelCamelCamel",
+        camelPage,
+        "icons/camel-favicon.png",
+      ),
     );
   }
   actionsEl.appendChild(
-    linkButton("Open on Keepa", keepaPageUrl(site, asin), "icons/keepa-favicon.png")
+    linkButton(
+      "Open on Keepa",
+      keepaPageUrl(site, asin),
+      "icons/keepa-favicon.png",
+    ),
   );
 
   statusEl.hidden = true;

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Price History for Amazon",
-  "version": "1.0.3",
-  "description": "Click on an Amazon product page, or right-click it, to jump straight to its price history on CamelCamelCamel and Keepa.",
+  "name": "Toolbox for Amazon",
+  "version": "1.1.0",
+  "description": "Load several pages of Amazon search results at once, filter and sort them, and check price history on CamelCamelCamel and Keepa.",
   "icons": {
     "16": "icons/icon16.png",
     "32": "icons/icon32.png",
@@ -11,7 +11,7 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Price History for Amazon",
+    "default_title": "Toolbox for Amazon",
     "default_icon": {
       "16": "icons/icon16.png",
       "32": "icons/icon32.png",
@@ -22,12 +22,7 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": [
-    "activeTab",
-    "contextMenus",
-    "tabs",
-    "storage"
-  ],
+  "permissions": ["activeTab", "contextMenus", "tabs", "storage"],
   "content_scripts": [
     {
       "matches": [
@@ -120,21 +115,64 @@
         "*://*.amazon.com.au/product-reviews/*",
         "*://*.amazon.com.au/*/product-reviews/*"
       ],
-      "js": [
-        "sites.js",
-        "content.js"
+      "js": ["sites.js", "content.js"],
+      "css": ["content.css"]
+    },
+    {
+      "matches": [
+        "*://*.amazon.com/s*",
+        "*://*.amazon.co.uk/s*",
+        "*://*.amazon.de/s*",
+        "*://*.amazon.fr/s*",
+        "*://*.amazon.co.jp/s*",
+        "*://*.amazon.ca/s*",
+        "*://*.amazon.it/s*",
+        "*://*.amazon.es/s*",
+        "*://*.amazon.in/s*",
+        "*://*.amazon.com.mx/s*",
+        "*://*.amazon.com.au/s*",
+        "*://*.amazon.nl/s*",
+        "*://*.amazon.se/s*",
+        "*://*.amazon.pl/s*",
+        "*://*.amazon.com.tr/s*",
+        "*://*.amazon.ae/s*",
+        "*://*.amazon.sa/s*",
+        "*://*.amazon.sg/s*",
+        "*://*.amazon.com.br/s*",
+        "*://*.amazon.com.be/s*",
+        "*://*.amazon.eg/s*",
+        "*://*.amazon.ie/s*",
+        "*://*.amazon.com/gp/search*",
+        "*://*.amazon.co.uk/gp/search*",
+        "*://*.amazon.de/gp/search*",
+        "*://*.amazon.fr/gp/search*",
+        "*://*.amazon.co.jp/gp/search*",
+        "*://*.amazon.ca/gp/search*",
+        "*://*.amazon.it/gp/search*",
+        "*://*.amazon.es/gp/search*",
+        "*://*.amazon.in/gp/search*",
+        "*://*.amazon.com.mx/gp/search*",
+        "*://*.amazon.com.au/gp/search*",
+        "*://*.amazon.nl/gp/search*",
+        "*://*.amazon.se/gp/search*",
+        "*://*.amazon.pl/gp/search*",
+        "*://*.amazon.com.tr/gp/search*",
+        "*://*.amazon.ae/gp/search*",
+        "*://*.amazon.sa/gp/search*",
+        "*://*.amazon.sg/gp/search*",
+        "*://*.amazon.com.br/gp/search*",
+        "*://*.amazon.com.be/gp/search*",
+        "*://*.amazon.eg/gp/search*",
+        "*://*.amazon.ie/gp/search*"
       ],
-      "css": [
-        "content.css"
-      ]
+      "js": ["lib.js", "search.js"],
+      "css": ["search.css"],
+      "run_at": "document_idle"
     }
   ],
   "web_accessible_resources": [
     {
-      "resources": [
-        "icons/camel-favicon.png",
-        "icons/keepa-favicon.png"
-      ],
+      "resources": ["icons/camel-favicon.png", "icons/keepa-favicon.png"],
       "matches": [
         "*://*.amazon.com/*",
         "*://*.amazon.co.uk/*",

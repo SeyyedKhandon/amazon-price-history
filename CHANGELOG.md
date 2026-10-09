@@ -5,6 +5,23 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0]
+
+### Added
+
+- Multi-page search toolbar on Amazon search results: load several pages into
+  one grid, filter by rating, reviews and price, sort across all loaded pages
+  (including a weighted "best rated" sort), and hide sponsored results.
+- Search toolbar support on additional marketplaces (.nl, .se, .pl, .ie, .com.br,
+  .com.tr, .ae, .sa, .sg, .com.be, .eg).
+- "See pages at once" slider in the search toolbar (default 5), sized to the last available page, with the total page count shown in the panel header.
+- Popup switch to turn the search toolbar off; the toolbar icon is now active
+  on search pages too.
+
+### Changed
+
+- Renamed the extension to "Toolbox for Amazon".
+
 ## [1.0.1]
 
 ### Added

@@ -1,12 +1,14 @@
-# Privacy Policy — Price History for Amazon
+# Privacy Policy — Toolbox for Amazon
 
-_Last updated: 2026-09-30_
+_Last updated: 2026-10-09_
 
 **In one sentence:** this extension does not collect, store, or transmit any personal data, to us or to anyone else.
 
 ## What the extension does
 
-On a product page at amazon.com or one of its supported international sites, the
+It has two features. The first works on product pages; the second on search pages.
+
+**Price history.** On a product page at amazon.com or one of its supported international sites, the
 extension reads that page's URL to identify the product, then gives you three
 equivalent ways to jump to that product's price history on
 [camelcamelcamel.com](https://camelcamelcamel.com) and [keepa.com](https://keepa.com) —
@@ -16,7 +18,14 @@ two independent, third-party price-tracking services:
 - the same two buttons in the toolbar popup, and
 - a "Check price history" entry in the right-click menu.
 
-That's the entire feature.
+**Multi-page search results.** On an Amazon search page, a toolbar lets you load
+more result pages into the same page. The extension requests those pages from
+the same Amazon site you are already on, using your normal browser session, and
+reads each product's price, rating, review count and sponsored
+label in order to filter and sort them on the page. Nothing it reads is stored
+or sent anywhere, and those requests go only to Amazon.
+
+That's the entire feature set.
 
 ## Data we collect
 
@@ -30,9 +39,10 @@ does happens locally in your browser:
 - It never reads any other tab.
 - It never sends that URL, or anything else, to us or to any server we operate —
   we don't operate one.
-- The only thing it stores is a single on/off preference (whether the inline
-  buttons are shown), saved locally via Chrome's `storage` API. That preference
-  never leaves your browser.
+- The only things it stores are your preferences — whether the inline buttons and
+  the search toolbar are shown, and the search toolbar's last-used settings
+  (number of pages, minimum rating, minimum reviews, sort order, hide sponsored) —
+  saved locally via Chrome's `storage` API. They never leave your browser.
 
 ## What happens when you click a button
 
@@ -44,13 +54,13 @@ policy, not this extension.
 
 ## Permissions this extension requests
 
-| Permission | Why |
-|---|---|
-| `activeTab` | Reads the URL and title of the tab you're currently viewing, only when you invoke the popup or menu. |
-| `tabs` | Monitors the active tab's URL as you browse, so the toolbar icon can dim when you're not on an Amazon product page. |
-| `contextMenus` | Adds the "Check price history" entry to the right-click menu on supported Amazon pages. |
-| `storage` | Saves your on/off preference for the inline buttons, locally. |
-| Host permissions (`*://*.amazon.com/*`, etc.) | Needed to inject the inline buttons next to the price on Amazon product pages. |
+| Permission                                    | Why                                                                                                                                                                               |
+| --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `activeTab`                                   | Reads the URL and title of the tab you're currently viewing, only when you invoke the popup or menu.                                                                              |
+| `tabs`                                        | Monitors the active tab's URL as you browse, so the toolbar icon can dim when you're not on an Amazon product page.                                                               |
+| `contextMenus`                                | Adds the "Check price history" entry to the right-click menu on supported Amazon pages.                                                                                           |
+| `storage`                                     | Saves your on/off preferences and the search toolbar's last-used settings, locally.                                                                                               |
+| Host permissions (`*://*.amazon.com/*`, etc.) | Needed to inject the inline buttons on product pages and the toolbar on search pages, and for the toolbar to fetch the extra result pages you request from that same Amazon site. |
 
 ## Changes to this policy
 
@@ -64,5 +74,5 @@ Questions about this policy or the extension:
 
 ---
 
-Price History for Amazon is an independent tool and is not affiliated with,
+Toolbox for Amazon is an independent tool and is not affiliated with,
 endorsed by, or sponsored by Amazon, CamelCamelCamel, or Keepa.

@@ -1,27 +1,47 @@
-# Price History for Amazon
+# Toolbox for Amazon
 
-A tiny Chrome extension. Click its icon (or right-click) on any Amazon product
-page and it opens that exact product's price-history page on
-[CamelCamelCamel](https://camelcamelcamel.com) and [Keepa](https://keepa.com)
-— no searching, no typing.
+**[➕ Add to Chrome — free](https://chromewebstore.google.com/detail/fdebpchoageihbdifaiallkcipeooaoo)** · [Watch the 36-second demo](https://www.youtube.com/watch?v=_BUUSi_Evqk)
 
-[Watch the 36-second demo](https://www.youtube.com/watch?v=_BUUSi_Evqk)
+A tiny, dependency-free Chrome extension with two tools for Amazon:
 
-# Install
+- **Multi-page search results.** Amazon shows one page at a time. On any search
+  page, a toolbar loads as many pages as you like into one grid, then lets you
+  filter by rating, reviews and price and sort the combined list.
+- **Price history in one click.** On any product page, jump straight to that
+  exact product's price history on
+  [CamelCamelCamel](https://camelcamelcamel.com) and [Keepa](https://keepa.com)
+  — no searching, no typing.
 
-[Check it on chrome webstore to install for free](https://chromewebstore.google.com/detail/price-history-for-amazon/fdebpchoageihbdifaiallkcipeooaoo)
+## Search toolbar
 
-## Screenshots
+| Control | What it does |
+| --- | --- |
+| **See pages at once** | How many result pages to show together (default 5, max 30). |
+| **Rating** / **Reviews** | Hide products below this star rating / review count. |
+| **Price** | Min / max price; the placeholders show the range in the current results. |
+| **Sort** | Featured, best rated, price, rating or most reviews — across all loaded pages. |
+| **Hide sponsored** | Drops sponsored cards. |
+
+Works on 22 Amazon marketplaces. Turn it off any time from the toolbar popup.
 
 <p align="center">
-  <img src="promo/assets/1_1-popup-in-context.jpg" width="420" alt="Toolbar popup open on an Amazon product page">
-  <br><em>Toolbar popup on an Amazon product page</em>
+  <img src="promo/assets/4-search-toolbar-in-context.jpg" width="400" alt="Amazon search results for ergonomic office chair with the Toolbox for Amazon panel at the top of the left filter column, showing 7 pages in total, 131 of 250 results, and sliders for pages at once, rating and reviews">
+  <br><em>The panel sits above Amazon's own filters — here 5 pages are loaded together, filtered to 4.4★ and up, sorted by price</em>
 </p>
 
 <p align="center">
-  <img src="promo/assets/1_2-popup-closeup.jpg" width="250" alt="Toolbar popup showing Open on CamelCamelCamel and Open on Keepa buttons">
-  <br><em>Popup closeup</em>
+  <img src="promo/assets/4_2-search-toolbar-panel-closeup.jpg" width="200" alt="Close-up of the Toolbox for Amazon search panel: pages in total, results count, See pages at once slider, Rating and Reviews sliders, price range, Sort by menu, Hide sponsored switch and Reset">
+  <br><em>Panel close-up</em>
 </p>
+
+## Settings
+
+<p align="center">
+  <img src="promo/assets/5-settings-popup.jpg" width="200" alt="Toolbox for Amazon toolbar popup on a product page: Open on CamelCamelCamel and Open on Keepa buttons, and switches for Price-history buttons and Multi-page search toolbar">
+  <br><em>Toolbar popup: jump to price history, and turn each tool on or off</em>
+</p>
+
+## Price history screenshots
 
 <p align="center">
   <img src="promo/assets/2-context-menu-in-context.jpg" width="420" alt="Right-click context menu showing Check price history submenu, with CamelCamelCamel and Keepa sub-items">
@@ -50,13 +70,12 @@ that product's page on each service.
 
 ## Install
 
-**Chrome Web Store** — submission in review. Until it's live, load it unpacked:
+**[➕ Add to Chrome — free](https://chromewebstore.google.com/detail/fdebpchoageihbdifaiallkcipeooaoo)**, then click **Add extension**. That's it — no setup, no account.
 
-1. Clone this repo.
-2. Go to `chrome://extensions`, enable **Developer mode**.
-3. Click **Load unpacked**, select this folder.
+Once installed, open any Amazon search page to see the panel, or any product
+page for the price-history buttons. The toolbar icon opens the settings.
 
-## Use
+## Use: price history
 
 - On any Amazon product page, **Check CamelCamelCamel** / **Check Keepa** buttons
   appear right next to the price — click one to open that product's page on
@@ -65,7 +84,7 @@ that product's page on each service.
 - Click the toolbar icon → two buttons do the same thing from the popup.
 - Or right-click anywhere on the page → **Check price history** → **CamelCamelCamel** / **Keepa**.
 
-## Supported marketplaces
+## Supported marketplaces (price history)
 
 amazon.com, .co.uk, .de, .fr, .co.jp, .ca, .it, .es, .in, .com.mx, .com.au
 (CamelCamelCamel only covers a subset of these; Keepa covers all of them).
@@ -74,22 +93,26 @@ amazon.com, .co.uk, .de, .fr, .co.jp, .ca, .it, .es, .in, .com.mx, .com.au
 
 Collects nothing. Reads the active tab's URL to build the two links — either
 when you click the icon/menu, or, on Amazon product pages, to place the
-inline buttons next to the price. The only thing saved is your on/off
-preference for those inline buttons, stored locally via the `storage`
-permission. No analytics, no telemetry, no server. Full policy:
+inline buttons next to the price. The search toolbar only talks to Amazon
+itself (to fetch the extra result pages you ask for). Saved locally via the
+`storage` permission: your on/off preferences and the toolbar's last-used
+settings. No analytics, no telemetry, no server. Full policy:
 [PRIVACY.md](PRIVACY.md).
 
 ## Project structure
 
-| File | Purpose |
-|---|---|
-| `manifest.json` | Extension manifest (Manifest V3) |
-| `sites.js` | Amazon → CamelCamelCamel/Keepa URL mapping and ASIN parsing |
-| `popup.html` / `popup.js` | Toolbar popup |
-| `background.js` | Right-click context menu and toolbar icon state |
-| `content.js` / `content.css` | Injects the buttons next to the price on product pages |
-| `icons/` | Toolbar/store icons and bundled attribution favicons |
-| `promo/assets/` | Screenshots used in this README and store listings |
+| File                         | Purpose                                                         |
+| ---------------------------- | --------------------------------------------------------------- |
+| `manifest.json`              | Extension manifest (Manifest V3)                                |
+| `sites.js`                   | Amazon → CamelCamelCamel/Keepa URL mapping and ASIN parsing     |
+| `popup.html` / `popup.js`    | Toolbar popup                                                   |
+| `background.js`              | Right-click context menu and toolbar icon state                 |
+| `content.js` / `content.css` | Injects the buttons next to the price on product pages          |
+| `search.js` / `search.css`   | Multi-page search toolbar: fetching, filtering, sorting         |
+| `lib.js`                     | Pure price/rating/review parsing and sort helpers (unit-tested) |
+| `test/`                      | Node tests for `lib.js` — run with `node --test`                |
+| `icons/`                     | Toolbar/store icons and bundled attribution favicons            |
+| `promo/assets/`              | Screenshots used in this README and store listings              |
 
 ## Changelog
 

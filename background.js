@@ -45,8 +45,7 @@ chrome.contextMenus.onClicked.addListener((info) => {
 
 function updateIcon(tabId, url) {
   if (!url) return;
-  const parsed = parseAmazonUrl(url);
-  if (parsed) {
+  if (parseAmazonUrl(url) || isSearchUrl(url)) {
     chrome.action.setIcon({
       tabId,
       path: {
