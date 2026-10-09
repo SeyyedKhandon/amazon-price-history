@@ -39,16 +39,24 @@ CamelCamelCamel and Keepa — via inline buttons, the toolbar icon or a right-cl
 - **1.0.2** — Context menu is now only shown on product pages (hidden on cart/checkout pages).
 - **1.0.1** — Extension icon now dims to grayscale when not actively browsing an Amazon product page.
 
-## Permission justifications (paste into the dashboard's Permissions tab)
+## Permission justifications (paste into the dashboard's Privacy practices tab)
 
-- **activeTab** — Used only when the user clicks the toolbar icon or the context menu, to read
-  the current tab's URL and title so the extension can detect the Amazon product being viewed
-  and build outbound links.
-- **tabs** — Used to monitor the active URL as you browse, so the extension's icon can be dimmed when not on an Amazon product page.
-- **contextMenus** — Adds the "Check price history" right-click entry (with CamelCamelCamel and
-  Keepa sub-items) on Amazon product pages.
-- **storage** — Required to save your settings: whether the on-page buttons and the search toolbar are enabled, and the search toolbar's last-used values (pages, rating, reviews, sort).
-- **Host Permissions (`*://*.amazon.com/*`, etc.)** — Required to inject the price tracker buttons next to the price on product pages, and the multi-page toolbar on search pages (which fetches the extra result pages you request from the same Amazon site).
+**activeTab**
+> Used when the user clicks the toolbar icon to open the popup. The extension reads the URL and title of the tab being viewed, only to detect whether it is an Amazon product or search page and, on a product page, to build the links to that product's price history on CamelCamelCamel and Keepa. Nothing is collected, stored or sent anywhere.
+
+**contextMenus**
+> Adds one right-click entry, "Check price history", with CamelCamelCamel and Keepa sub-items. It appears only on Amazon product pages. Choosing an item opens that product's price-history page on the chosen site in a new tab. This is the only use of the permission.
+
+**tabs**
+> Used only to read the URL of the active tab, so the extension can tell whether it is an Amazon product or search page. This lets the toolbar icon show as active on those pages and dimmed elsewhere, and lets the popup show the right links. URLs are checked locally in the browser and are never stored, logged or transmitted. No browsing history is collected.
+
+**storage**
+> Saves the user's own preferences in the browser: whether the price-history buttons and the multi-page search toolbar are shown (chrome.storage.sync, so the choice follows the user across devices), and the search toolbar's last-used settings such as number of pages, minimum rating, minimum reviews, sort order and hide-sponsored (chrome.storage.local). No personal data, browsing history or Amazon product information is stored or transmitted.
+
+**Host permission**
+> Content scripts run on Amazon product pages, to add the CamelCamelCamel and Keepa quick-access buttons next to the price, and on Amazon search-result pages, to add the filter panel above Amazon's own filters. To show several results pages at once, the panel requests the next result pages from the same Amazon site the user is already on, using their normal session, and merges the products into the page. These requests go only to Amazon. No data is collected, stored or sent to any other server.
+
+**Remote code:** No. All code ships in the package. The only network request is the search toolbar fetching more Amazon result pages (HTML data, parsed and never executed) from the same Amazon site.
 
 ## Privacy practices tab
 
@@ -73,8 +81,8 @@ CamelCamelCamel and Keepa — via inline buttons, the toolbar icon or a right-cl
   5. `screenshot-5-camelcamelcamel.png` — "Jump straight to the price history". Alt: CamelCamelCamel chart
      for the product.
   Retired (outdated UI or over the 5-screenshot limit): `store-assets/archive/`.
-- Small promo tile (440×280, no alpha): `store-assets/promo-tile-small-440x280.png` — "Toolbox for Amazon" with the new icon
-- Marquee promo tile (1400×560, no alpha): `store-assets/promo-tile-marquee-1400x560.png` — title, tagline and the search panel
+- Small promo tile (440×280, 24-bit PNG, no alpha): `store-assets/promo-tile-small-440x280.png` — name and tagline, with the search panel and the CamelCamelCamel and Keepa charts
+- Marquee promo tile (1400×560, 24-bit PNG, no alpha): `store-assets/promo-tile-marquee-1400x560.png` — name, tagline and icon, with the search panel and both price-history charts (labelled "Search toolbar", "CamelCamelCamel", "Keepa")
 - Listing: https://chromewebstore.google.com/detail/fdebpchoageihbdifaiallkcipeooaoo (item ID `fdebpchoageihbdifaiallkcipeooaoo`)
 - Promo video (optional "Global promo video" field, which takes a URL, not a file):
   https://www.youtube.com/watch?v=_BUUSi_Evqk
